@@ -1,0 +1,6 @@
+AzureAd__Instance=https://login.microsoftonline.com/
+AzureAd__Domain=ros20021999gmail.onmicrosoft.com
+AzureAd__TenantId=66c52fe0-c0ed-48ef-97b4-5a274cd3a4a1
+AzureAd__ClientId=1a30a727-cf9b-4edf-8c29-b6c3ac80a48a
+AzureAd__CallbackPath=/signin-oidc
+AzureAd__Scopes=access_as_user
