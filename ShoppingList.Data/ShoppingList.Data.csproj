@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ShoppingList.Common\ShoppingList.Common.csproj" />
     <ProjectReference Include="..\ShoppingList.Data.Domain\ShoppingList.Data.Domain.csproj" />
   </ItemGroup>
 

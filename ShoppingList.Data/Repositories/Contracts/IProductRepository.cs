@@ -2,7 +2,7 @@
 
 namespace ShoppingList.Data.Repositories.Contracts
 {
-    public interface IProductCategoryRepository : IRepositoryBase<ProductCategory>
+    public interface IProductRepository : IRepositoryBase<Product>
     {
     }
 }
