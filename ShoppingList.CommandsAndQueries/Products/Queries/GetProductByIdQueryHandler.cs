@@ -5,7 +5,7 @@ using ShoppingList.Services.Contracts;
 
 namespace ShoppingList.CommandsAndQueries.ProductCategories.Queries
 {
-    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ProductModel>
+    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ApiResponse<ProductModel>>
     {
         private readonly IProductsService productsService;
 
@@ -16,9 +16,9 @@ namespace ShoppingList.CommandsAndQueries.ProductCategories.Queries
             this.productsService = productsService;
         }
 
-        public async Task<ProductModel> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<ProductModel>> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            return await productsService.GetByIdAsync(request.Id.ToGuid(), cancellationToken);
+            return new ApiResponse<ProductModel>(await productsService.GetByIdAsync(request.Id.ToGuid(), cancellationToken));
         }
     }
 }

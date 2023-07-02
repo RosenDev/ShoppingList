@@ -4,7 +4,7 @@ using ShoppingList.Services.Contracts;
 
 namespace ShoppingList.CommandsAndQueries.Products.Commands
 {
-    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>
+    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, ApiResponse>
     {
         private readonly IProductsService productsService;
 
@@ -15,9 +15,11 @@ namespace ShoppingList.CommandsAndQueries.Products.Commands
             this.productsService = productsService;
         }
 
-        public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
             await productsService.DeleteAsync(request.Id.ToGuid(), cancellationToken);
+
+            return ApiResponse.Ok();
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using MediatR;
+using ShoppingList.Common;
 using ShoppingList.Services.Contracts;
 
 namespace ShoppingList.CommandsAndQueries.Users.Commands
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, string>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResponse<string>>
     {
         private readonly IUsersService usersService;
 
@@ -14,9 +15,9 @@ namespace ShoppingList.CommandsAndQueries.Users.Commands
             this.usersService = usersService;
         }
 
-        public async Task<string> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<string>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            return await usersService.AddAsync(request.User, cancellationToken);
+            return new ApiResponse<string>(await usersService.AddAsync(request.User, cancellationToken));
         }
     }
 }
