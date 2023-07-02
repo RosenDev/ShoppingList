@@ -20,6 +20,9 @@ namespace ShoppingList.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<User>()
+                .HasIndex(x => x.Username)
+                .IsUnique();
 
             foreach(var entityType in modelBuilder.Model.GetEntityTypes())
             {
@@ -32,11 +35,11 @@ namespace ShoppingList.Data
             }
         }
 
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             ApplyAuditInfoRules();
 
-            return base.SaveChangesAsync(cancellationToken);
+            return await base.SaveChangesAsync(cancellationToken);
         }
 
         private void ApplyAuditInfoRules()
@@ -45,23 +48,19 @@ namespace ShoppingList.Data
                 .Entries()
                 .Where(e =>
                     e.Entity is IEntity &&
-                    (e.State == EntityState.Added || e.State == EntityState.Modified));
+                    (e.State == EntityState.Added || e.State == EntityState.Modified || e.State == EntityState.Deleted));
 
             foreach(var entry in changedEntries)
             {
                 var entity = (IEntity)entry.Entity;
 
-
-                if(entry.State == EntityState.Added)
-                {
-                    entity.Created = DateTime.UtcNow;
-                }
-                else if(entry.State == EntityState.Modified && entity.Updated == null)
+                if(entry.State == EntityState.Modified && entity.Updated == null)
                 {
                     entity.Updated = DateTime.UtcNow;
                 }
                 else if(entry.State == EntityState.Deleted && entity.Deleted == null)
                 {
+                    entry.State = EntityState.Modified;
                     entity.Deleted = DateTime.UtcNow;
                     entity.IsDeleted = true;
                 }

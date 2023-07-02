@@ -3,10 +3,11 @@ using ShoppingList.Data.Domain;
 
 namespace ShoppingList.Data.Repositories.Contracts
 {
-    public interface IRepositoryBase<TEntity> where TEntity : IEntity
+    public interface IRepositoryBase<TEntity>
+        where TEntity : IEntity
     {
         Task<int> CountAsync();
-        Task<TEntity> FindAsync(int id, CancellationToken ct);
+        Task<TEntity> FindAsync(Guid id, CancellationToken ct);
 
         Task<List<TEntity>> ListAsync(Paging paging, CancellationToken ct);
 
@@ -14,7 +15,7 @@ namespace ShoppingList.Data.Repositories.Contracts
 
         Task<TEntity> UpdateAsync(TEntity entity, CancellationToken ct);
 
-        Task<bool> DeleteAsync(int id, CancellationToken ct);
+        Task<bool> DeleteAsync(Guid id, CancellationToken ct);
     }
 }
 

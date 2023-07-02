@@ -1,11 +1,10 @@
 ﻿namespace ShoppingList.Model
 {
-    public class ProductModel : ApiModel
+    public class CreateProductModel
     {
         public string Name { get; set; }
         public double Price { get; set; }
         public bool Bought { get; set; }
-        public int CategoryId { get; set; }
-        public ProductCategoryModel Category { get; set; }
+        public string CategoryId { get; set; }
     }
 }

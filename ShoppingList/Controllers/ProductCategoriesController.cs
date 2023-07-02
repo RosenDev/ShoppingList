@@ -1,38 +1,60 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ShoppingList.Data.Domain;
-using ShoppingList.Model;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ShoppingList.CommandsAndQueries.ProductCategories.Commands;
+using ShoppingList.CommandsAndQueries.ProductCategories.Queries;
+using ShoppingList.Common;
 
 namespace ShoppingList.Controllers
 {
-    public class ProductCategoriesController : ApiControllerBase<ProductCategory, ProductCategoryModel>
+    [AllowAnonymous]
+    public class ProductCategoriesController : ApiControllerBase
     {
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        private readonly IMediator mediator;
+
+        public ProductCategoriesController(IMediator mediator)
         {
-            return Ok();
+            this.mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] Paging paging, CancellationToken ct)
+        {
+            return Ok(await mediator.Send(new GetProductCategoriesQuery
+            {
+                Paging = paging
+            }, ct));
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(string id, CancellationToken ct)
         {
-            return Ok();
+            return Ok(await mediator.Send(new GetProductCategoryByIdQuery
+            {
+                Id = id
+            }, ct));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ProductCategoryModel categoryModel)
+        public async Task<IActionResult> Post([FromBody] CreateProductCategoryCommand createProductCategoryCommand, CancellationToken ct)
         {
-            return Ok();
+            return Ok(await mediator.Send(createProductCategoryCommand, ct));
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ProductCategoryModel categoryModel)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateProductCategoryCommand updateProductCategoryCommand, CancellationToken ct)
         {
-            return Ok();
+            return Ok(await mediator.Send(updateProductCategoryCommand, ct));
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id, CancellationToken ct)
         {
+            await mediator.Send(new DeleteProductCategoryCommand
+            {
+                Id = id
+            }, ct);
+
             return Ok();
         }
     }

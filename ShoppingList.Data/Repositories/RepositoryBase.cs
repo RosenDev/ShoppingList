@@ -18,7 +18,7 @@ namespace ShoppingList.Data.Repositories
         }
 
 
-        public virtual async Task<bool> DeleteAsync(int id, CancellationToken ct)
+        public virtual async Task<bool> DeleteAsync(Guid id, CancellationToken ct)
         {
             var entity = await Set.FindAsync(id);
 
@@ -31,7 +31,7 @@ namespace ShoppingList.Data.Repositories
 
         }
 
-        public virtual async Task<TEntity> FindAsync(int id, CancellationToken ct)
+        public virtual async Task<TEntity> FindAsync(Guid id, CancellationToken ct)
         {
             return await ApplyInclude(Set).FirstOrDefaultAsync(x => x.Id == id, ct);
         }

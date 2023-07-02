@@ -10,6 +10,18 @@ namespace ShoppingList.Data.Repositories
         {
         }
 
+        public Task<User> GetByUsernameAsync(string username, CancellationToken ct)
+        {
+            var user = ApplyInclude(Set).FirstOrDefaultAsync(x => x.Username == username, ct);
+
+            if(user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "The user could not be found");
+            }
+
+            return user!;
+        }
+
         protected override IQueryable<User> ApplyInclude(IQueryable<User> query)
         {
             return query.Include(x => x.ProductLists);

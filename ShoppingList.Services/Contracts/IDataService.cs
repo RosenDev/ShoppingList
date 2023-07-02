@@ -8,11 +8,11 @@ namespace ShoppingList.Services.Contracts
     where TEntity : IEntity
     where TApiEntity : IApiEntity
     {
-        Task<TApiEntity> GetByIdAsync(int id, CancellationToken ct);
+        Task<TApiEntity> GetByIdAsync(Guid id, CancellationToken ct);
 
         Task<PagedResponse<TApiEntity>> ListAsync(Paging paging, CancellationToken ct);
 
-        Task<bool> DeleteAsync(int id, CancellationToken ct);
+        Task<bool> DeleteAsync(Guid id, CancellationToken ct);
     }
 }
 

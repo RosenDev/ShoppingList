@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
 using ShoppingList.Common;
 using ShoppingList.Data.Domain;
 using ShoppingList.Data.Repositories.Contracts;
@@ -12,22 +11,19 @@ namespace ShoppingList.Services
         where TEntity : IEntity
         where TApiEntity : IApiEntity
     {
-        protected readonly IRepositoryBase<TEntity> repositoryBase;
+        private readonly IRepositoryBase<TEntity> repositoryBase;
         protected readonly IMapper mapper;
-        private readonly ILogger<DataService<TEntity, TApiEntity>> logger;
 
         public DataService(
             IRepositoryBase<TEntity> repositoryBase,
-            IMapper mapper,
-            ILogger<DataService<TEntity, TApiEntity>> logger
+            IMapper mapper
             )
         {
             this.repositoryBase = repositoryBase;
             this.mapper = mapper;
-            this.logger = logger;
         }
 
-        public virtual async Task<TApiEntity> GetByIdAsync(int id, CancellationToken ct)
+        public virtual async Task<TApiEntity> GetByIdAsync(Guid id, CancellationToken ct)
         {
             return mapper.Map<TApiEntity>(await repositoryBase.FindAsync(id, ct));
         }
@@ -41,7 +37,7 @@ namespace ShoppingList.Services
             return new PagedResponse<TApiEntity>(result, paging.Page, paging.Size, totalCount);
         }
 
-        public virtual async Task<bool> DeleteAsync(int id, CancellationToken ct)
+        public virtual async Task<bool> DeleteAsync(Guid id, CancellationToken ct)
         {
             return await repositoryBase.DeleteAsync(id, ct);
         }

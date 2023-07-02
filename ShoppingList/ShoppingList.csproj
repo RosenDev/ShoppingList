@@ -14,6 +14,7 @@
     <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.15" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
     <PackageReference Include="Microsoft.Identity.Web" Version="2.12.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
@@ -33,8 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShoppingList.CommandsAndQueries\ShoppingList.CommandsAndQueries.csproj" />
-    <ProjectReference Include="..\ShoppingList.Data\ShoppingList.Data.csproj" />
-    <ProjectReference Include="..\ShoppingList.Model\ShoppingList.Model.csproj" />
   </ItemGroup>
 
 </Project>
