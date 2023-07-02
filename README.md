@@ -1,6 +1,6 @@
 # ShoppingList
 
-##How to run
+## How to run
 
 1. Place the required envoironment variables values in the environmentVariables.list file.
 
