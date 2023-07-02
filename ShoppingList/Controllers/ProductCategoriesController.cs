@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingList.CommandsAndQueries.ProductCategories.Commands;
 using ShoppingList.CommandsAndQueries.ProductCategories.Queries;
@@ -7,7 +6,6 @@ using ShoppingList.Common;
 
 namespace ShoppingList.Controllers
 {
-    [AllowAnonymous]
     public class ProductCategoriesController : ApiControllerBase
     {
         private readonly IMediator mediator;

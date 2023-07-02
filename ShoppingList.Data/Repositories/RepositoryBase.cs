@@ -39,7 +39,7 @@ namespace ShoppingList.Data.Repositories
         public virtual async Task<List<TEntity>> ListAsync(Paging paging, CancellationToken ct)
         {
             return await ApplyInclude(Set).AsNoTracking()
-            .Skip(paging.Page - 1)
+            .Skip(paging.Page)
             .Take(paging.Size)
             .ToListAsync(ct);
         }
