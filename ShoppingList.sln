@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList", "ShoppingList\ShoppingList.csproj", "{F97EB888-EACF-461B-8538-15DCA498CB72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList", "ShoppingList\ShoppingList.csproj", "{F97EB888-EACF-461B-8538-15DCA498CB72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Data.Domain", "ShoppingList.Data.Domain\ShoppingList.Data.Domain.csproj", "{4A7D18B0-5653-4B32-BAD3-7A56A339FFDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Data.Domain", "ShoppingList.Data.Domain\ShoppingList.Data.Domain.csproj", "{4A7D18B0-5653-4B32-BAD3-7A56A339FFDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Data", "ShoppingList.Data\ShoppingList.Data.csproj", "{2B6CF071-5D48-4F6E-8664-C8C4A95EFFAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Data", "ShoppingList.Data\ShoppingList.Data.csproj", "{2B6CF071-5D48-4F6E-8664-C8C4A95EFFAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Services", "ShoppingList.Services\ShoppingList.Services.csproj", "{CCACDFEE-38D9-42E2-94B6-3A3E474A8157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Services", "ShoppingList.Services\ShoppingList.Services.csproj", "{CCACDFEE-38D9-42E2-94B6-3A3E474A8157}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Model", "ShoppingList.Model\ShoppingList.Model.csproj", "{4335C45F-C9FF-43D1-8DF0-A009811412BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Model", "ShoppingList.Model\ShoppingList.Model.csproj", "{4335C45F-C9FF-43D1-8DF0-A009811412BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.CommandsAndQueries", "ShoppingList.CommandsAndQueries\ShoppingList.CommandsAndQueries.csproj", "{AC24F173-D0D4-4699-A612-FD50BDEF9953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.CommandsAndQueries", "ShoppingList.CommandsAndQueries\ShoppingList.CommandsAndQueries.csproj", "{AC24F173-D0D4-4699-A612-FD50BDEF9953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Tests", "ShoppingList.Tests\ShoppingList.Tests.csproj", "{9E438D7A-481D-4D28-88A0-7DCCB704D473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Tests", "ShoppingList.Tests\ShoppingList.Tests.csproj", "{9E438D7A-481D-4D28-88A0-7DCCB704D473}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{870DD0C6-4F2D-4557-B111-09F059C9076B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Common", "..\ShoppingList.Common\ShoppingList.Common.csproj", "{C38B6D5F-4823-4E00-A2F4-DAC20A8E84E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{870DD0C6-4F2D-4557-B111-09F059C9076B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{870DD0C6-4F2D-4557-B111-09F059C9076B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{870DD0C6-4F2D-4557-B111-09F059C9076B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38B6D5F-4823-4E00-A2F4-DAC20A8E84E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38B6D5F-4823-4E00-A2F4-DAC20A8E84E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38B6D5F-4823-4E00-A2F4-DAC20A8E84E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38B6D5F-4823-4E00-A2F4-DAC20A8E84E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

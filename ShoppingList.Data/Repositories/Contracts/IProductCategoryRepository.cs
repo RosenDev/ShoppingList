@@ -2,8 +2,7 @@
 
 namespace ShoppingList.Data.Repositories.Contracts
 {
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepositoryBase<ProductCategory>
     {
-        Task<ProductCategory> GetByIdAsync(int id, CancellationToken ct);
     }
 }
