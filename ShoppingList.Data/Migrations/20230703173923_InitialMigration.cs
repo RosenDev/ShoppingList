@@ -49,8 +49,7 @@ namespace ShoppingList.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    UserId1 = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Deleted = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -60,8 +59,8 @@ namespace ShoppingList.Data.Migrations
                 {
                     table.PrimaryKey("PK_ProductLists", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductLists_User_UserId1",
-                        column: x => x.UserId1,
+                        name: "FK_ProductLists_User_UserId",
+                        column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -74,9 +73,7 @@ namespace ShoppingList.Data.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<double>(type: "double precision", nullable: false),
-                    Bought = table.Column<bool>(type: "boolean", nullable: false),
-                    CategoryId = table.Column<int>(type: "integer", nullable: false),
-                    CategoryId1 = table.Column<Guid>(type: "uuid", nullable: false),
+                    CategoryId = table.Column<Guid>(type: "uuid", nullable: false),
                     ProductListId = table.Column<Guid>(type: "uuid", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Updated = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -87,8 +84,8 @@ namespace ShoppingList.Data.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_ProductCategories_CategoryId1",
-                        column: x => x.CategoryId1,
+                        name: "FK_Products_ProductCategories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "ProductCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -100,19 +97,25 @@ namespace ShoppingList.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductLists_UserId1",
+                name: "IX_ProductLists_UserId",
                 table: "ProductLists",
-                column: "UserId1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryId1",
+                name: "IX_Products_CategoryId",
                 table: "Products",
-                column: "CategoryId1");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_ProductListId",
                 table: "Products",
                 column: "ProductListId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Username",
+                table: "User",
+                column: "Username",
+                unique: true);
         }
 
         /// <inheritdoc />

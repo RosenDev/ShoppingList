@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShoppingList.CommandsAndQueries.ProductCategories.Commands;
 using ShoppingList.Data;
+using ShoppingList.Data.Contracts;
 using ShoppingList.Data.Repositories;
 using ShoppingList.Data.Repositories.Contracts;
 using ShoppingList.Services;
@@ -30,6 +31,7 @@ namespace ShoppingList
             services.AddTransient<IProductRepository, ProductReposiotry>();
             services.AddTransient<IProductListRepository, ProductListRepository>();
             services.AddTransient<IUserRepository, UserReposiotry>();
+            services.AddScoped<IDataSeeder, DataSeeder>();
 
             return services;
         }

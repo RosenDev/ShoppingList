@@ -7,5 +7,6 @@ namespace ShoppingList.CommandsAndQueries.ProductLists.Commands
     public class CreateProductListCommand : IRequest<ApiResponse<string>>
     {
         public CreateProductListModel ProductList { get; set; }
+        public string Username { get; set; }
     }
 }

@@ -46,6 +46,13 @@ namespace ShoppingList.Data.Repositories
 
         public virtual async Task<TEntity> AddAsync(TEntity entity, CancellationToken ct)
         {
+            var existingUser = await Set.FindAsync(entity.Id);
+
+            if(existingUser != null)
+            {
+                return existingUser;
+            }
+
             entity.Created = DateTime.UtcNow;
 
             Set.Add(entity);
