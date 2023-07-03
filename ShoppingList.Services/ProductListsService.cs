@@ -9,15 +9,23 @@ namespace ShoppingList.Services
     public class ProductListsService : DataService<ProductList, ProductListModel>, IProductListsService
     {
         private readonly IProductListRepository productListRepository;
+        private readonly IUserRepository userRepository;
 
-        public ProductListsService(IProductListRepository productListRepository, IMapper mapper) : base(productListRepository, mapper)
+        public ProductListsService(
+            IProductListRepository productListRepository,
+            IUserRepository userRepository,
+            IMapper mapper
+            ) : base(productListRepository, mapper)
         {
             this.productListRepository = productListRepository;
+            this.userRepository = userRepository;
         }
 
-        public async Task<string> AddAsync(CreateProductListModel createModel, CancellationToken ct)
+        public async Task<string> AddAsync(CreateProductListModel createModel, string username, CancellationToken ct)
         {
-            return (await productListRepository.AddAsync(mapper.Map<ProductList>(createModel), ct))
+            var entity = mapper.Map<ProductList>(createModel);
+            entity.UserId = (await userRepository.GetByUsernameAsync(username, ct)).Id;
+            return (await productListRepository.AddAsync(entity, ct))
                 .Id
                 .ToString();
         }

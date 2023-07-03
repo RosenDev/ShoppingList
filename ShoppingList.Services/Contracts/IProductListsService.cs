@@ -7,6 +7,6 @@ namespace ShoppingList.Services.Contracts
     {
         Task<string> UpdateAsync(UpdateProductListModel createModel, CancellationToken ct);
 
-        Task<string> AddAsync(CreateProductListModel updateModel, CancellationToken ct);
+        Task<string> AddAsync(CreateProductListModel updateModel, string username, CancellationToken ct);
     }
 }

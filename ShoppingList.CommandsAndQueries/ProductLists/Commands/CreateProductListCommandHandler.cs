@@ -17,7 +17,7 @@ namespace ShoppingList.CommandsAndQueries.ProductLists.Commands
 
         public async Task<ApiResponse<string>> Handle(CreateProductListCommand request, CancellationToken cancellationToken)
         {
-            return new ApiResponse<string>(await productListsService.AddAsync(request.ProductList, cancellationToken));
+            return new ApiResponse<string>(await productListsService.AddAsync(request.ProductList, request.Username, cancellationToken));
         }
     }
 }

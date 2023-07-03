@@ -5,6 +5,7 @@ using ShoppingList;
 using ShoppingList.ActionFilters;
 using ShoppingList.Configuration;
 using ShoppingList.Data;
+using ShoppingList.Data.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,8 +28,8 @@ builder.Services.AddCors(x => x.AddDefaultPolicy(opts =>
     var corsSettings = builder.Configuration.GetSection("CorsSettings").Get<CorsSettings>();
     opts.AllowAnyMethod();
     opts.AllowAnyHeader();
-    opts.SetIsOriginAllowedToAllowWildcardSubdomains();
-    opts.WithOrigins(corsSettings.FrontEndUrl);
+    opts.WithOrigins(corsSettings.FrontEndUrl)
+    .SetIsOriginAllowedToAllowWildcardSubdomains();
 }));
 
 var app = builder.Build();
@@ -48,6 +49,10 @@ var pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
 if(pendingMigrations.Count() > 0)
 {
     await dbContext.Database.MigrateAsync();
+
+    var seeder = scope.ServiceProvider.GetRequiredService<IDataSeeder>();
+
+    await seeder.SeedDataAsync(default);
 }
 
 app.UseAuthentication();

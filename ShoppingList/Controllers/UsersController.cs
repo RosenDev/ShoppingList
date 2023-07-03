@@ -24,26 +24,13 @@ namespace ShoppingList.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterUserAsync([FromBody] CreateUserCommand createUserCommand, CancellationToken ct)
+        public async Task<IActionResult> RegisterUserAsync(CancellationToken ct)
         {
-            return Ok(await mediator.Send(createUserCommand, ct));
-        }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserCommand updateUserCommand, CancellationToken ct)
-        {
-            return Ok(await mediator.Send(updateUserCommand, ct));
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] string id, CancellationToken ct)
-        {
-            await mediator.Send(new DeleteUserCommand
+            var aaaa = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "preferred_username").Value;
+            return Ok(await mediator.Send(new CreateUserCommand
             {
-                Id = id
-            }, ct);
-
-            return Ok();
+                Username = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "preferred_username").Value
+            }, ct));
         }
     }
 }
